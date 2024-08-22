@@ -13,6 +13,7 @@ function fetchLocations(query) {
         .then(response => response.json())
         .then(data => {
             displayResults(data.locations);
+            addMarkersToMap(data.locations);
         })
         .catch(error => {
             console.error('Error fetching locations:', error);
@@ -43,6 +44,22 @@ function initMap() {
         center: { lat: -1.2921, lng: 36.8219 } // Default to Nairobi, Kenya
     });
     // Add markers based on locations
+    // locations.forEach(location => {
+    //     const marker = new google.maps.Marker({
+    //         position: { lat: location.latitude, lng: location.longitude },
+    //         map: map,
+    //         title: location.partner_name
+    //     });
+    // });
+
+function addMarkersToMap(locations) {
+    // Clear existing markers
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: { lat: locations[0].latitude, lng: locations[0].longitude } // Center the map on the first location
+    });
+    
+    // Add a marker for each location
     locations.forEach(location => {
         const marker = new google.maps.Marker({
             position: { lat: location.latitude, lng: location.longitude },
@@ -50,4 +67,8 @@ function initMap() {
             title: location.partner_name
         });
     });
+}
+
+
+    
 }
