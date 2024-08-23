@@ -1,10 +1,64 @@
 let map;
 let markers = [];
 
+// Initialize Google Maps
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: { lat: -1.2921, lng: 36.8219 } // Default center (Nairobi, Kenya)
+    });
+
+    // Example dummy data for partner locations
+    const partnerLocations = [
+        { name: "Standard Chartered Bank", address: "123 Nairobi Ave, Nairobi, Kenya", position: { lat: -1.2833, lng: 36.8167 } },
+        { name: "Stanbic Bank", address: "456 Nairobi St, Nairobi, Kenya", position: { lat: -1.2864, lng: 36.8172 } },
+        { name: "ZB Bank (Formerly Zimbank)", address: "789 Market Rd, Nairobi, Kenya", position: { lat: -1.2921, lng: 36.8219 } },
+        { name: "Barclays Bank", address: "101 City Plaza, Nairobi, Kenya", position: { lat: -1.2922, lng: 36.8228 } },
+        { name: "CABS", address: "202 Business Park, Nairobi, Kenya", position: { lat: -1.2950, lng: 36.8230 } },
+        { name: "Beverly Building Society", address: "303 Retail Center, Nairobi, Kenya", position: { lat: -1.2960, lng: 36.8240 } },
+        { name: "CBZ", address: "404 Financial District, Nairobi, Kenya", position: { lat: -1.2970, lng: 36.8250 } },
+        { name: "NMB (National Merchant Bank)", address: "505 Commerce Rd, Nairobi, Kenya", position: { lat: -1.2980, lng: 36.8260 } },
+        { name: "Agribank", address: "606 Bank Street, Nairobi, Kenya", position: { lat: -1.2990, lng: 36.8270 } },
+        { name: "FBC Bank", address: "707 Investment Blvd, Nairobi, Kenya", position: { lat: -1.3000, lng: 36.8280 } }
+    ];
+
+    // Add markers for the dummy locations
+    partnerLocations.forEach((partner) => {
+        const marker = new google.maps.Marker({
+            position: partner.position,
+            map: map,
+            title: partner.name
+        });
+        markers.push(marker);
+    });
+
+    document.getElementById('search-button').addEventListener('click', function () {
+        const query = document.getElementById('search-bar').value.trim().toLowerCase();
+        const matchedPartner = partnerLocations.find(partner =>
+            partner.name.toLowerCase().includes(query)
+        );
+
+        if (matchedPartner) {
+            // Center the map to the matched partner location
+            map.setCenter(matchedPartner.position);
+            map.setZoom(14); // Zoom in for a closer view
+
+            // Optionally, you can display additional information about the matched partner
+            document.getElementById('results').innerHTML = `<p>Found: ${matchedPartner.name} - Lat: ${matchedPartner.position.lat}, Lng: ${matchedPartner.position.lng}</p>`;
+        } else {
+            // No match found, show dummy locations and alert
+            alert('No exact match found. Displaying nearby partner locations instead.');
+            document.getElementById('results').innerHTML = partnerLocations.map(partner =>
+                `<p>${partner.name} - Lat: ${partner.position.lat}, Lng: ${partner.position.lng}</p>`
+            ).join('');
+
+            // Optionally, recenter and zoom out to show all locations
+            const bounds = new google.maps.LatLngBounds();
+            partnerLocations.forEach(partner => {
+                bounds.extend(partner.position);
+            });
+            map.fitBounds(bounds);
+        }
     });
 }
 
@@ -47,15 +101,6 @@ function showError(error) {
     }
     document.getElementById('location-status').textContent = errorMessage;
 }
-
-document.getElementById('search-button').addEventListener('click', function () {
-    const query = document.getElementById('search-bar').value;
-    if (query) {
-        fetchLocations(query);
-    } else {
-        alert('Please enter a location or partner name.');
-    }
-});
 
 function fetchLocations(query) {
     const apiUrl = `https://api-ubt.mukuru.com/taurus/v1/resources/pay-out-partners?search=${encodeURIComponent(query)}`;
@@ -145,47 +190,6 @@ document.getElementById('search-location').addEventListener('click', function ()
         return;
     }
 
-    const searchQuery = encodeURIComponent(destination);
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
-    window.open(mapsUrl, '_blank');
-});
-
-window.addEventListener('scroll', function() {
-    const banner = document.querySelector('.banner');
-    const bannerImage = banner.querySelector('img');
-    const maxScroll = 300; // Increased scroll range for more exaggerated effect
-
-    let scrollValue = window.scrollY;
-
-    if (scrollValue > maxScroll) {
-        scrollValue = maxScroll;
-    }
-
-    const newHeight = 400 - (scrollValue / maxScroll) * 300; // Exaggerate height reduction from 400px to 100px
-    banner.style.height = `${newHeight}px`;
-
-    // Add a scaling effect to the banner image
-    const scaleValue = 1 - (scrollValue / maxScroll) * 0.5; // Scale from 1 to 0.5
-    bannerImage.style.transform = `scale(${scaleValue})`;
-
-    // Optional: Add a fading effect
-    const opacityValue = 1 - (scrollValue / maxScroll) * 0.5; // Fade out as you scroll
-    bannerImage.style.opacity = `${opacityValue}`;
-});
-
-document.getElementById('toggle-vision').addEventListener('click', function() {
-    const body = document.body;
-    const container = document.querySelector('.container');
-    const icon = document.getElementById('vision-icon');
-
-    body.classList.toggle('night-vision');
-    container.classList.toggle('night-vision');
-
-    if (body.classList.contains('night-vision')) {
-        icon.src = 'night-icon.png'; // Change to night icon
-        icon.alt = 'Night Vision';
-    } else {
-        icon.src = 'day-icon.png'; // Change to day icon
-        icon.alt = 'Day Vision';
-    }
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(destination)}`;
+    window.open(googleMapsUrl, '_blank');
 });
