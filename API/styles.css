@@ -8,72 +8,22 @@ body {
     align-items: center;
     height: 100vh;
     overflow-x: hidden;
+    background-image: url('img/elderly-black-man-with-a-beaming-smile-wearing-a-patterned-hat-and-glasses-photo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
 }
 
-.banner {
-    position: fixed;
+body::after {
+    content: "";
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 400px; /* Start with a large height */
-    overflow: hidden;
-    z-index: -1; /* Place behind other content */
-    transition: height 0.5s ease, opacity 0.5s ease; /* Smooth transition */
-}
-
-.banner img {
-    width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0.7; /* Adjust opacity for transparency */
-    transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 1; /* Ensure it appears above the banner */
-    outline: none;
-}
-
-.header img {
-    width: 40px;
-    height: auto;
-    margin-right: 10px;
-}
-
-.header p {
-    margin: 0;
-    font-size: 18px;
-}
-
-#partnerFinderParagraph {
-    position: absolute;
-    top: 420px; /* Adjust to accommodate the large banner */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 16px;
-    margin: 0;
-    z-index: 1; /* Ensure it appears above the banner */
-}
-
-#selectCountryParagraph {
-    position: absolute;
-    top: 460px; /* Adjust based on the height of the header and partnerFinderParagraph */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 16px;
-    margin: 0;
-    text-align: center;
-    max-width: 90%;
-    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the rgba value for more or less fading */
+    z-index: -1; /* Place behind other content */
 }
 
 .container {
@@ -84,7 +34,10 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 600px;
-    margin-top: 540px; /* Adjust based on the initial large banner */
+    margin-top: 50px; /* Adjust margin to fit content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 1; /* Ensure it appears above the banner */
 }
 
@@ -124,6 +77,8 @@ body {
 }
 
 #map {
+    width: 100%; /* Ensure the map takes full width of the container */
+    max-width: 800px; /* Adjust as needed */
     height: 300px;
     margin-top: 20px;
 }
@@ -169,4 +124,10 @@ body.night-vision {
 #toggle-vision img {
     width: 30px;
     height: 30px;
+}
+
+.intro-text p {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #333;
 }

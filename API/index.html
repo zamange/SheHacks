@@ -7,34 +7,17 @@
     <link rel="stylesheet" href="styles.css" id="theme-stylesheet">
 </head>
 <body>
-    <div class="banner">
-        <img src="/home/wtc/SheHacks/img/mukuru-1.webp" alt="Mukuru background Banner">
-    </div>
-
-    <button class="header" onclick="window.location.href='https://www.mukuru.com/sa/find-us/payin-collection-points/#';">
-        <img src="/home/wtc/SheHacks/img/pinpointer-removebg-preview.png" alt="Google location pinpoint">
-        <p>Our Partners</p>
-    </button>
-
-    <p id="partnerFinderParagraph">
-        Find a Mukuru Pay-in or Payout partner near you.
-    </p>
-
-    <p id="selectCountryParagraph">
-        Select your country. Select your recipient’s country. Find your closest partner.
-    </p>
-    
     <div class="container">
         <h1>Find a Payout Location</h1>
         <input type="text" id="search-bar" placeholder="Enter your location or partner name...">
         <button id="search-button">Search</button>
         <div id="results"></div>
-        <div id="map"></div> 
+        <div id="map" class="centered-map"></div> 
     </div>
 
     <!-- Night Vision Toggle Button -->
     <button id="toggle-vision" class="toggle-vision">
-        <img src="day-icon.png" alt="Day Vision" id="vision-icon">
+        <img src="day-icon.png" alt="Toggle to Night Vision" id="vision-icon">
     </button>
 
     <script src="app.js"></script>
