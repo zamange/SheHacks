@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Bot</title>
+    <link rel="stylesheet" href="chat.css"> <!-- Link to the external stylesheet -->
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Chat with Us</div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const messagesContainer = document.getElementById('chat-messages');
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const message = userInput.value.trim().toLowerCase();
+
+            if (message === '') return;
+
+            // Display user message
+            const userMessageElement = document.createElement('div');
+            userMessageElement.textContent = `You: ${userInput.value}`;
+            messagesContainer.appendChild(userMessageElement);
+
+            // Clear input field
+            userInput.value = '';
+
+            // Bot responses
+            let botResponse = "I'm here to help you!";
+
+            const sendMoneyPhrases = ['i want to send money'];
+            const collectMoneyPhrases = [
+                'i dont know where to collect the money',
+                'where to collect',
+                'where to collect it',
+                'i dont know where to collect it'
+            ];
+            const greetings = ['hi'];
+            const farewells = ['bye'];
+            const conversationEnd = ['no', "that's it", 'thank you'];
+
+            if (sendMoneyPhrases.includes(message)) {
+                botResponse = 'To send money, navigate to the home page, and click on the send money options.';
+            } else if (collectMoneyPhrases.includes(message)) {
+                botResponse = 'Mukuru has partners across many countries, including Botswana, the United Kingdom, Uganda, and many more! Navigate to your home page and click on the search button.';
+            } else if (greetings.includes(message)) {
+                botResponse = 'Hello! How can I assist you today?';
+            } else if (farewells.includes(message)) {
+                botResponse = 'Goodbye! If you need further assistance, don’t hesitate to ask.';
+            } else if (conversationEnd.includes(message)) {
+                botResponse = 'You’re welcome! Have a great day!';
+            } else {
+                botResponse = 'I’m not sure how to help with that. Please navigate to your home page to find your nearest branch or make further inquiries.';
+            }
+
+            // Display bot response
+            setTimeout(() => {
+                const botMessageElement = document.createElement('div');
+                botMessageElement.textContent = `Bot: ${botResponse}`;
+                messagesContainer.appendChild(botMessageElement);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                // Ask if there's anything else after each response
+                if (!conversationEnd.includes(message) && !farewells.includes(message)) {
+                    setTimeout(() => {
+                        const followUpMessageElement = document.createElement('div');
+                        followUpMessageElement.textContent = 'Bot: Is there anything else I can assist you with?';
+                        messagesContainer.appendChild(followUpMessageElement);
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    }, 1000);
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
