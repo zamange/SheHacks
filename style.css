@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --orangerd: orangered;
+    --black: #444;
+    --light-color: #777;
+    --box-shadow: .5rem .5rem 0 rgba(22, 160, 133, .2);
+    --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .2);
+    --border: .2rem solid var(--black); /* Ensure border color is correct */
+    --navbar-link-color: #333; /* Color for navbar links */
+    --navbar-link-hover-color: var(--orangerd); /* Color for navbar links on hover */
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-transform: capitalize;
+    transition: all .2s ease-out;
+    text-decoration: none;
+}
+
+html {
+    font-size: 70%;
+    scroll-padding-top: 7rem;
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 2rem 9%;
+    padding: .5rem;
+}
+
+.heading {
+    text-align: center;
+    padding-bottom: 2rem;
+    text-shadow: var(--text-shadow);
+    text-transform: uppercase;
+    color: var(--black);
+    font-size: 5rem;
+    letter-spacing: .4rem;
+}
+
+.heading span {
+    color: var(--orangerd);
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: .5rem;
+    padding-left: 1rem;
+    border: var(--border);
+    border-radius: 50px;
+    box-shadow: var(--box-shadow);
+    color: var(--orangerd);
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn span {
+    padding: .7rem 1rem;
+    border-radius: .5rem;
+    background: var(--orangerd);
+    color: #fff;
+    margin-left: .5rem;
+}
+
+.btn:hover {
+    background: var(--orangerd);
+    color: #fff;
+}
+
+.btn:hover span {
+    color: var(--orangerd);
+    background: #fff;
+    margin-left: 1rem;
+}
+
+.header {
+    padding: 2rem 9%;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, .1);
+    backdrop-filter: blur(10px);
+}
+
+.section {
+    padding: 2rem 9%;
+}
+
+section:nth-child(even) {
+    background: #f5f5f5;
+}
+
+.logo-img {
+    height: 40px; /* Adjust height as needed */
+    width: auto;
+    display: block;
+}
+
+.header .navbar {
+    font-size: 1.7rem;
+    color: var(--navbar-link-color); /* Set default color for navbar links */
+    margin-left: 2rem;
+}
+
+.header .navbar a {
+    color: var(--navbar-link-color); /* Set color for individual navbar links */
+}
+
+.header .navbar a:hover {
+    color: var(--navbar-link-hover-color); /* Set color on hover */
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.navbar {
+    text-align: center; /* Centers the links horizontally */
+}
+
+.navbar a {
+    display: inline-block; /* Ensures each link is on the same line */
+    margin-right: 20px; /* Adjust the space between links */
+}
+
+.navbar a:last-child {
+    margin-right: 0; /* Removes margin from the last link */
+}
+
+.home {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 10rem;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.image {
+    position: relative;
+    width: 100vw;   /* Make the container fit the full viewport width */
+    height: 75vh;   /* Adjust this value to control the vertical size of the container */
+    overflow: hidden; /* Hide any overflow content */
+}
+
+.image {
+
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+    height: 100vh; /* Ensure the body element takes up the full viewport height */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+.image img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: auto;  /* Adjust height automatically based on the width */
+    object-fit: cover; /* Ensure the image covers the container without distortion */
+    transform: translate(-50%, -50%); /* Center the image */
+}
+
+.home .content h1{
+    flex:1 1 45rem;
+    font-size: 4.5rem;
+    position: relative;
+    color: var(--black);
+    margin-top: -65rem;
+    text-shadow: var(--text-shadow);
+    margin-inline-start: 90rem;
+}
+
+.home .content h3{
+    font-size: 15rem;
+    color: var(--black);
+    line-height: 1.8;
+    text-shadow: var(--text-shadow);
+    /* position: relative;   */
+}
+
+.home .content h3{
+    font-size: 1.7rem;
+    color: var(--light-color);
+    line-height: 1.8;
+     padding: 1rem 0; 
+     margin-inline-start: 90rem;
+    /* text-align: justify; */
+}
+
+.home .content .btn{
+    margin-inline-start: 90rem; 
+    position: relative;
+    margin-top: 5rem; 
+    
+}
+.home .content p{
+   font-size: 2.5rem;
+   color:#0d112b; 
+   word-wrap :normal;
+   margin-inline-start: 90rem;
+
+
+}
+
+
+.image {
+    position: relative;
+    display: inline-block; /* Ensures container size fits image */
+}
+
+.converter {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    background: rgba(255, 255, 255, 0.9); /* Optional: background color with transparency */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: shadow for better visibility */
+    z-index: 10; /* Ensures it appears above other content */
+}
+
+.converter .form-group {
+    margin-bottom: 10px; /* Space between form groups */
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff; /* Button color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.cta-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+
+
+.services .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+    gap: 2rem;
+}
+
+.services .box-container .box{
+    background: #fff;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    padding: 2.5rem;
+
+}
+
+.services .box-container .box i{
+    color:var(--green);
+    font-size: 5rem;
+    padding-bottom: .5rem;
+}
+
+.services .box-container .box h3{
+    color:var(--black);
+    font-size: 2.5rem;
+    padding: 1rem 0;
+}
+
+.services .box-container .box p{
+    color:var(--light-color);
+    font-size: 1.4rem;
+    line-height: 2;
+}
+
+/* Add these styles to your existing CSS file */
+
+.icons-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 9%;
+    background: #f5f5f5;
+}
+
+.converter {
+    position: absolute;
+    top: 30%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    padding: 15px;
+    max-width: 400px; /* Adjust as needed */
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.converter h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--black);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+}
+
+.cta-button {
+    background: var(--orangerd);
+    color: #fff;
+    padding: 0.75rem;
+}
+
+.footer {
+    background-color: var(--navbar-link-color);
+    color: #fff;
+    padding: 4rem 0;
+}
+
+.footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-content {
+    display: flex;
+    gap: 4rem;
+    flex: 1 1 50%;
+}
+
+.footer-logo {
+    max-width: 20rem;
+}
+
+.footer-links ul li a:hover {
+    color: var(--black);
+}
+
+.footer-contact {
+    max-width: 20rem;
+}
+
+.footer-social {
+    text-align: center;
+    flex: 1 1 30%;
+}
+
+.social-icons a {
+    display: inline-block;
+    color: #fff;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--black);
+}
+
+.footer-logo{
+    padding-left: 4rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    padding-right: 4rem;
+    color: #fff;
+}
+
+.footer-bottom p {
+    font-size: 1.4rem;
+    margin: 0;
+}
