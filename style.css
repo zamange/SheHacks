@@ -293,6 +293,12 @@ html, body {
     line-height: 2;
 }
 
+.box:hover {
+    background-color: white;
+    transform: scale(1.05); /* Slightly scales up the element on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a subtle box shadow */
+}
+
 /* Add these styles to your existing CSS file */
 
 .icons-container {
