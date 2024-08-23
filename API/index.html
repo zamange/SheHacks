@@ -9,115 +9,16 @@
 <body>
     <div class="container">
         <h1>Find a Payout Location</h1>
-        <input type="text" id="search-bar" placeholder="Enter your location or partner name...">
-        <button id="search-button">Search</button>
+        <div id="location-status"></div>
+        <div id="search-section" style="display: none;">
+            <input type="text" id="search-bar" placeholder="Enter your location or partner name...">
+            <button id="search-button">Search</button>
+        </div>
         <div id="results"></div>
-        <div id="map" style="height: 500px; width: 100%;"></div> <!-- Optional: Map for showing locations -->
+        <div id="map"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Initialize global map variable
-        let map;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10,
-                center: { lat: -1.2921, lng: 36.8219 } // Default to Nairobi, Kenya
-            });
-        }
-
-        document.getElementById('search-button').addEventListener('click', function() {
-            const query = document.getElementById('search-bar').value;
-            if (query) {
-                fetchLocations(query);
-            } else {
-                alert('Please enter a location or partner name.');
-            }
-        });
-
-        function fetchLocations(query) {
-            // Replace with your actual API endpoint
-            const apiUrl = `https://api-ubt.mukuru.com/taurus/v1/resources/pay-out-partners?search=${encodeURIComponent(query)}`;
-
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        return response.text().then(text => {
-                            throw new Error(`Network response was not ok: ${response.status} ${response.statusText}. ${text}`);
-                        });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.items && data.items.length > 0) {
-                        displayResults(data.items);
-                        addMarkersToMap(data.items);
-                    } else {
-                        displayResults([]);
-                        alert('No payout locations found.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching locations:', error);
-                    alert(`An error occurred while fetching locations: ${error.message}`);
-
-                    // Fallback to dummy data
-                    const dummyData = {
-                        "totalPages": 45,
-                        "pageSize": 10,
-                        "totalItems": 449,
-                        "items": [
-                            {"guid": "2", "name": "Standard Chartered Bank", "currencies": ["USD"], "countryCodes": ["ZW"], "logos": [], "productTypes": ["bank-top-up"]},
-                            {"guid": "3", "name": "Stanbic Bank", "currencies": ["USD"], "countryCodes": ["ZW"], "logos": [], "productTypes": ["bank-top-up"]},
-                            {"guid": "5", "name": "ZB Bank (Formerly Zimbank)", "currencies": ["USD"], "countryCodes": ["ZW"], "logos": [], "productTypes": ["bank-top-up","cash-collection"]},
-                            {"guid": "6", "name": "Barclays Bank", "currencies": ["USD"], "countryCodes": ["ZW"], "logos": [], "productTypes": ["bank-top-up"]},
-                            {"guid": "7", "name": "CABS", "currencies": ["RTG","USD"], "countryCodes": ["ZW"], "logos": [], "productTypes": ["bank-top-up","bill-payment","card-top-up","cash-collection"]},
-                            {"guid": "8", "name": "Beverly Building Society", "currencies": ["USD"], "countryCodes": ["ZW"], "logos": [], "productTypes": ["bank-top-up"]},
-                            {"guid": "9", "name": "CBZ", "currencies": ["USD","ZAR"], "countryCodes": ["ZW"], "logos": [], "productTypes": ["bank-top-up","cash-collection"]},
-                            {"guid": "12", "name": "NMB (National Merchant Bank)", "currencies": ["USD"], "countryCodes": ["ZW"], "logos": [], "productTypes": ["bank-top-up"]},
-                            {"guid": "14", "name": "Agribank", "currencies": ["USD"], "countryCodes": ["ZW"], "logos": [], "productTypes": ["bank-top-up"]},
-                            {"guid": "16", "name": "FBC Bank", "currencies": ["USD"], "countryCodes": ["ZW"], "logos": [], "productTypes": ["bank-top-up"]}
-                        ]
-                    };
-                    displayResults(dummyData.items);
-                    addMarkersToMap(dummyData.items);
-                });
-        }
-
-        function displayResults(locations) {
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = ''; // Clear previous results
-            if (locations.length > 0) {
-                locations.forEach(location => {
-                    const locationDiv = document.createElement('div');
-                    locationDiv.className = 'result-item';
-                    locationDiv.innerHTML = `
-                        <h3>${location.name}</h3>
-                        <p>Product Types: ${location.productTypes.join(', ')}</p>
-                        <p>Country Codes: ${location.countryCodes.join(', ')}</p>
-                    `;
-                    resultsDiv.appendChild(locationDiv);
-                });
-            } else {
-                resultsDiv.innerHTML = '<p>No payout locations found.</p>';
-            }
-        }
-
-        function addMarkersToMap(locations) {
-            if (locations.length > 0) {
-                map.setCenter({ lat: -1.2921, lng: 36.8219 }); // Default location as Nairobi
-                locations.forEach(location => {
-                    new google.maps.Marker({
-                        position: { lat: -1.2921, lng: 36.8219 }, // Default coordinates, update based on real data if available
-                        map: map,
-                        title: location.name
-                    });
-                });
-            }
-        }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAve5flx8ICYiEyvSXGURWKY25-iVCgh-4&callback=initMap">
-    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAve5flx8ICYiEyvSXGURWKY25-iVCgh-4&callback=initMap"></script>
+    <script src="app.js"></script>
 </body>
 </html>
