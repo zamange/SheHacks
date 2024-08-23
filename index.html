@@ -4,42 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mukuru</title>
-    <script>document.addEventListener('DOMContentLoaded', () => {
-        const amountInput = document.getElementById('amount');
-        const fromCurrencySelect = document.getElementById('from-currency');
-        const toCurrencySelect = document.getElementById('to-currency');
-        const receiveAmountSpan = document.getElementById('receive-amount');
-        const convertButton = document.getElementById('convert-button');
-    
-        function updateConversion() {
-            const amount = parseFloat(amountInput.value) || 0;
-            const fromCurrency = fromCurrencySelect.value;
-            const toCurrency = toCurrencySelect.value;
-    
-            // Placeholder conversion rates for demonstration. Replace with actual rates.
-            const conversionRates = {
-                'USD_EUR': 0.85,
-                'EUR_USD': 1.18,
-                'USD_GBP': 0.75,
-                'GBP_USD': 1.33,
-                // Add more conversion rates as needed
-            };
-    
-            const rateKey = `${fromCurrency}_${toCurrency}`;
-            const conversionRate = conversionRates[rateKey] || 1;
-    
-            const receiveAmount = amount * conversionRate;
-            receiveAmountSpan.textContent = receiveAmount.toFixed(2);
-        }
-    
-        // Add event listener to the convert button
-        convertButton.addEventListener('click', updateConversion);
-    
-        // Optional: Update conversion automatically on input or selection change
-        amountInput.addEventListener('input', updateConversion);
-        fromCurrencySelect.addEventListener('change', updateConversion);
-        toCurrencySelect.addEventListener('change', updateConversion);
-    });
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const amountInput = document.getElementById('amount');
+            const fromCurrencySelect = document.getElementById('from-currency');
+            const toCurrencySelect = document.getElementById('to-currency');
+            const receiveAmountSpan = document.getElementById('receive-amount');
+            const convertButton = document.getElementById('convert-button');
+        
+            function updateConversion() {
+                const amount = parseFloat(amountInput.value) || 0;
+                const fromCurrency = fromCurrencySelect.value;
+                const toCurrency = toCurrencySelect.value;
+        
+                // Placeholder conversion rates for demonstration. Replace with actual rates.
+                const conversionRates = {
+                    'USD_EUR': 0.85,
+                    'EUR_USD': 1.18,
+                    'USD_GBP': 0.75,
+                    'GBP_USD': 1.33,
+                    'USD_JPY': 110.25,
+                    'JPY_USD': 0.0091,
+                    'USD_AUD': 1.34,
+                    'AUD_USD': 0.75,
+                    'USD_CAD': 1.25,
+                    'CAD_USD': 0.80,
+                    'USD_CHF': 0.93,
+                    'CHF_USD': 1.08,
+                    'USD_CNY': 6.45,
+                    'CNY_USD': 0.155,
+                    'USD_ZAR': 18.50,
+                    'ZAR_USD': 0.054,
+                    'USD_INR': 82.35,
+                    'INR_USD': 0.012,
+                    'USD_BRL': 5.10,
+                    'BRL_USD': 0.196,
+                    // Add more conversion rates as needed
+                };
+        
+                const rateKey = `${fromCurrency}_${toCurrency}`;
+                const conversionRate = conversionRates[rateKey] || 1;
+        
+                const receiveAmount = amount * conversionRate;
+                receiveAmountSpan.textContent = receiveAmount.toFixed(2);
+            }
+        
+            // Add event listener to the convert button
+            convertButton.addEventListener('click', updateConversion);
+        
+            // Optional: Update conversion automatically on input or selection change
+            amountInput.addEventListener('input', updateConversion);
+            fromCurrencySelect.addEventListener('change', updateConversion);
+            toCurrencySelect.addEventListener('change', updateConversion);
+        });
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -77,7 +94,14 @@
                         <option value="USD">USD - US Dollar</option>
                         <option value="EUR">EUR - Euro</option>
                         <option value="GBP">GBP - British Pound</option>
-                        <!-- Add more currencies as needed -->
+                        <option value="JPY">JPY - Japanese Yen</option>
+                        <option value="AUD">AUD - Australian Dollar</option>
+                        <option value="CAD">CAD - Canadian Dollar</option>
+                        <option value="CHF">CHF - Swiss Franc</option>
+                        <option value="CNY">CNY - Chinese Yuan</option>
+                        <option value="ZAR">ZAR - South African Rand</option>
+                        <option value="INR">INR - Indian Rupee</option>
+                        <option value="BRL">BRL - Brazilian Real</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -86,7 +110,14 @@
                         <option value="USD">USD - US Dollar</option>
                         <option value="EUR">EUR - Euro</option>
                         <option value="GBP">GBP - British Pound</option>
-                        <!-- Add more currencies as needed -->
+                        <option value="JPY">JPY - Japanese Yen</option>
+                        <option value="AUD">AUD - Australian Dollar</option>
+                        <option value="CAD">CAD - Canadian Dollar</option>
+                        <option value="CHF">CHF - Swiss Franc</option>
+                        <option value="CNY">CNY - Chinese Yuan</option>
+                        <option value="ZAR">ZAR - South African Rand</option>
+                        <option value="INR">INR - Indian Rupee</option>
+                        <option value="BRL">BRL - Brazilian Real</option>
                     </select>
                 </div>
                 <button type="button" id="convert-button" class="cta-button">Update</button>
@@ -145,8 +176,10 @@
         <div class="image">
             <img src="img/Gynecology consultation.gif" alt="">
         </div>
+        <div class="logo-container">
+            <img src="img/Mukuru-Logo-final.webp" alt="Mukuru Logo" class="logo-img">
+        </div>
         <form action="API/index.html">
-
             <input type="submit" value="Find Our Partners" class="btn">
         </form>
     </div>
@@ -156,20 +189,15 @@
     <div class="container">
         <div class="footer-content">
             <a href="#" class="logo">
-                <img src="/home/wtc/hack/SheHacks/img/Mukuru-Logo-final.webp" alt="Mukuru Logo" class="logo-img">
+                <img src="/home/wtc/hack/Shekinah/www/Mukuru-Logo-final.webp" alt="Mukuru Logo">
             </a>
-            <div class="footer-social">
-                <h3>Follow Us</h3>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/mukurudotcom/"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://x.com/mukurudotcom?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/mukurudotcom/?hl=en"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/company/mukuru/?originalSubdomain=za"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
             <p>&copy; 2024 Mukuru. All rights reserved.</p>
+            <div class="socials">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
         </div>
     </div>
 </footer>
