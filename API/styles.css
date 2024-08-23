@@ -4,10 +4,78 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
+    overflow-x: hidden;
 }
+
+.banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px; /* Start with a large height */
+    overflow: hidden;
+    z-index: -1; /* Place behind other content */
+    transition: height 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7; /* Adjust opacity for transparency */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1; /* Ensure it appears above the banner */
+    outline: none;
+}
+
+.header img {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.header p {
+    margin: 0;
+    font-size: 18px;
+}
+
+#partnerFinderParagraph {
+    position: absolute;
+    top: 420px; /* Adjust to accommodate the large banner */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    margin: 0;
+    z-index: 1; /* Ensure it appears above the banner */
+}
+
+#selectCountryParagraph {
+    position: absolute;
+    top: 460px; /* Adjust based on the height of the header and partnerFinderParagraph */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    margin: 0;
+    text-align: center;
+    max-width: 90%;
+    z-index: 1;
+}
+
 .container {
     text-align: center;
     background-color: white;
@@ -16,7 +84,10 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 600px;
+    margin-top: 540px; /* Adjust based on the initial large banner */
+    z-index: 1; /* Ensure it appears above the banner */
 }
+
 #search-bar {
     width: 80%;
     padding: 10px;
@@ -24,6 +95,7 @@ body {
     border: 1px solid #ccc;
     margin-bottom: 10px;
 }
+
 #search-button {
     padding: 10px 20px;
     border: none;
@@ -32,17 +104,21 @@ body {
     color: white;
     cursor: pointer;
 }
+
 #search-button:hover {
     background-color: #0056B3;
 }
+
 #results {
     margin-top: 20px;
 }
+
 .result-item {
     padding: 10px;
     border-bottom: 1px solid #ccc;
     text-align: left;
 }
+
 .result-item:last-child {
     border-bottom: none;
 }
@@ -50,4 +126,47 @@ body {
 #map {
     height: 300px;
     margin-top: 20px;
+}
+
+/* Day Vision (Default) */
+body {
+    background-color: #F4F4F4;
+    color: #000;
+}
+
+.container {
+    background-color: white;
+    color: #000;
+}
+
+/* Night Vision */
+body.night-vision {
+    background-color: #2C3E50;
+    color: #ECF0F1;
+}
+
+.container.night-vision {
+    background-color: #34495E;
+    color: #ECF0F1;
+}
+
+#toggle-vision {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#toggle-vision img {
+    width: 30px;
+    height: 30px;
 }

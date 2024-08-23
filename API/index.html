@@ -4,21 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Payout Location</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" id="theme-stylesheet">
 </head>
 <body>
+    <div class="banner">
+        <img src="/home/wtc/SheHacks/img/mukuru-1.webp" alt="Mukuru background Banner">
+    </div>
+
+    <button class="header" onclick="window.location.href='https://www.mukuru.com/sa/find-us/payin-collection-points/#';">
+        <img src="/home/wtc/SheHacks/img/pinpointer-removebg-preview.png" alt="Google location pinpoint">
+        <p>Our Partners</p>
+    </button>
+
+    <p id="partnerFinderParagraph">
+        Find a Mukuru Pay-in or Payout partner near you.
+    </p>
+
+    <p id="selectCountryParagraph">
+        Select your country. Select your recipient’s country. Find your closest partner.
+    </p>
+    
     <div class="container">
         <h1>Find a Payout Location</h1>
-        <div id="location-status"></div>
-        <div id="search-section" style="display: none;">
-            <input type="text" id="search-bar" placeholder="Enter your location or partner name...">
-            <button id="search-button">Search</button>
-        </div>
+        <input type="text" id="search-bar" placeholder="Enter your location or partner name...">
+        <button id="search-button">Search</button>
         <div id="results"></div>
-        <div id="map"></div>
+        <div id="map"></div> 
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAve5flx8ICYiEyvSXGURWKY25-iVCgh-4&callback=initMap"></script>
+
+    <!-- Night Vision Toggle Button -->
+    <button id="toggle-vision" class="toggle-vision">
+        <img src="day-icon.png" alt="Day Vision" id="vision-icon">
+    </button>
+
     <script src="app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAve5flx8ICYiEyvSXGURWKY25-iVCgh-4&callback=initMap"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
