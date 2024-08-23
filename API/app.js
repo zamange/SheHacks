@@ -1,8 +1,6 @@
-// Initialize global map variable
 let map;
 let markers = [];
 
-// Function to initialize the map
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
@@ -23,15 +21,8 @@ function showPosition(position) {
     const userLat = position.coords.latitude;
     const userLng = position.coords.longitude;
 
-    // Ensure the map is initialized before setting center
-    if (map) {
-        map.setCenter({ lat: userLat, lng: userLng });
-    } else {
-        // Fallback if map is not initialized
-        setTimeout(() => {
-            map.setCenter({ lat: userLat, lng: userLng });
-        }, 1000);
-    }
+    // Update the map center to the user's location
+    map.setCenter({ lat: userLat, lng: userLng });
 
     // Display status
     document.getElementById('location-status').textContent = "Location detected. You will be redirected to the map.";
@@ -56,6 +47,15 @@ function showError(error) {
     }
     document.getElementById('location-status').textContent = errorMessage;
 }
+
+document.getElementById('search-button').addEventListener('click', function () {
+    const query = document.getElementById('search-bar').value;
+    if (query) {
+        fetchLocations(query);
+    } else {
+        alert('Please enter a location or partner name.');
+    }
+});
 
 function fetchLocations(query) {
     const apiUrl = `https://api-ubt.mukuru.com/taurus/v1/resources/pay-out-partners?search=${encodeURIComponent(query)}`;
@@ -134,9 +134,7 @@ function addMarkersToMap(locations) {
     });
 
     // Adjust the map to fit all markers
-    if (map) {
-        map.fitBounds(bounds);
-    }
+    map.fitBounds(bounds);
 }
 
 // Redirect to Google Maps for specific searches
