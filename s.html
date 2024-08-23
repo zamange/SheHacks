@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        .container {
+            position: relative;
+            min-height: 100vh;
+            color: white;
+            justify-content: center;
+            background-color: #28282B;
+        }
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            perspective: 1000px;
+        }
+        section::before {
+            content: "";
+            height: 225px;
+            width: 225px;
+            position: absolute;
+            background: linear-gradient(90deg, rgb(225, 0, 217), rgb(212, 178, 178));
+            border-radius: 50%;
+            transform: translate(-130px, -150px);
+        }
+        section::after {
+            content: "";
+            height: 225px;
+            width: 225px;
+            position: absolute;
+            background: linear-gradient(90deg, rgb(225, 0, 217), rgb(212, 178, 178));
+            border-radius: 50%;
+            transform: translate(-130px, 150px);
+        }
+        .card-container {
+            position: relative;
+            height: 250px;
+            width: 380px;
+            z-index: 100;
+            transform-style: preserve-3d;
+            transition: 0.6s;
+        }
+        .card-container:hover {
+            transform: rotateY(180deg);
+        }
+        .card {
+            height: 100%;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.013);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            border: 1px solid rgba(159, 151, 151, 0.0643);
+            position: absolute;
+            backface-visibility: hidden;
+        }
+        .front {
+            padding: 25px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .icon {
+            display: flex;
+        }
+        .icon img {
+            height: 35px;
+        }
+        .icon h2 {
+            font-size: 18px;
+            font-weight: 400;
+            position: relative;
+            top: 8px;
+            margin-left: 10px;
+        }
+        .chip img {
+            height: 30px;
+        }
+        .front-details {
+            margin-top: 50px;
+        }
+        .card-name {
+            font-size: 13px;
+        }
+        .card-num {
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        .name-valid {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .val {
+            font-size: 13px;
+            margin-top: -8px;
+            margin-bottom: 5px;
+        }
+        .validity h3 {
+            font-weight: 500;
+        }
+        .back {
+            padding: 20px 25px;
+            transform: rotateY(180deg);
+        }
+        .back .contact {
+            font-size: 10px;
+        }
+        .black-strip {
+            background-color: black;
+            width: 100%;
+            height: 40px;
+            position: absolute;
+            left: 0;
+            top: 40px;
+        }
+        .white-strip {
+            height: 45px;
+            width: 85%;
+            border-radius: 8px;
+            position: relative;
+            top: 70px;
+            background: repeating-linear-gradient(#fff, #fff 3px, #EFEFEF 0px, #EFEFEF 9px);
+        }
+        .white-strip::after {
+            content: "005";
+            height: 25px;
+            width: 40px;
+            background-color: white;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4px;
+            position: absolute;
+            right: -40px;
+            top: 6px;
+            color: black;
+            font-weight: 600;
+        }
+        .text {
+            font-size: 12px;
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            right: 25px;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section>
+            <div class="card-container">
+                <div class="card front">
+                    <div class="header">
+                        <div class="icon">
+                            <img src="img/logo.png" alt="oops">
+                            <h2>Master Card</h2>
+                        </div>
+                        <div class="chip">
+                            <img src="img/sim-card-clipart-design-illustration-free-png.webp">
+                        </div>
+                    </div>
+                    <div class="front-details">
+                        <p class="card-name">Card Number</p>
+                        <p class="card-num">1201 2004 2109 3052</p>
+                        <div class="name-valid">
+                            <div class="name">Zama Ngeyane</div>
+                        </div>
+                        <div class="validity">
+                            <p class="val">Valid Until</p>
+                            <h3>05/29</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card back">
+                    <p class="contact">For customer service call 031 909 1205 mastercard@gmail.com</p>
+                    <div class="black-strip"></div>
+                    <div class="white-strip"></div>
+                    <p class="text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Molestiae corrupti iure, reiciendis quisquam, sapiente,
+                        doloribus officia laboriosam minus architecto rem animi suscipit
+                        labore error laudantium illo dolorum deleniti minima nam.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
